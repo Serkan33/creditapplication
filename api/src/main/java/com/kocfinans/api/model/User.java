@@ -1,14 +1,23 @@
 package com.kocfinans.api.model;
 
 import lombok.Data;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
+import java.util.UUID;
 
 @Data
-@Entity
+@Entity(name = "user_entity")
 public class User {
+
+    @Id
+    @GeneratedValue(generator = "uuid")
+    @GenericGenerator(name = "uuid", strategy = "uuid2")
+    private UUID  id;
 
     @NotEmpty(message = "Kimlik alanı boş geçilemez")
     private String citizenNumber;
