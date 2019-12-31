@@ -3,14 +3,16 @@ package com.kocfinans.api.service;
 import com.kocfinans.api.model.User;
 import com.kocfinans.api.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.server.ResponseStatusException;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-@Service
-public class UserServiceImpl implements UserService<User> {
+@org.springframework.stereotype.Service
+public class UserServiceImpl implements ServiceInterface<User> {
 
     @Autowired
     private UserRepository repository;
@@ -25,8 +27,30 @@ public class UserServiceImpl implements UserService<User> {
         return repository.findById(id);
     }
 
+
+    public User findByCitizen(String citizenNumber) {
+        Optional<User> user  = repository.findByCitizenNumber(citizenNumber);
+        user.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,"Kullanıcı bulunamadı"));
+        return user.get();
+    }
+
+    @Transactional
     @Override
-    public Optional<User> findByCitizen(String citizenNumber) {
-        return repository.findByCitizenNumber(citizenNumber);
+    public User save (User u){
+        return repository.save(u);
+    }
+
+    @Override
+    public UUID delete(UUID uuid) {
+        User user = repository.getOne(uuid);
+        repository.delete(user);
+        return uuid;
+    }
+
+    @Transactional
+    @Override
+    public User update(User user) {
+
+        return null;
     }
 }

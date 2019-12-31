@@ -4,9 +4,11 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-public interface UserService<T> {
+public interface ServiceInterface<T> {
 
     List<T> findAll();
     Optional<T> findById(UUID id);
-    Optional<T> findByCitizen(String citizenNumber);
+    T save(T t);
+    UUID delete(UUID uuid);
+    T update(T t);
 }
