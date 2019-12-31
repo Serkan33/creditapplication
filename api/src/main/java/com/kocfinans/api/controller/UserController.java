@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("credit")
@@ -34,5 +35,14 @@ public class UserController {
     @GetMapping("user/{citizenNumber}")
     public User findByCitizenNumber(@PathVariable  String citizenNumber){
         return service.findByCitizen(citizenNumber);
+    }
+
+    @PutMapping("user/update")
+    public  User update(@RequestBody User user){
+        return null;
+    }
+    @DeleteMapping("user/delete")
+    public UUID delete(@RequestBody User user){
+        return null;
     }
 }

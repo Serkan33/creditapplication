@@ -8,6 +8,13 @@ services:
       - "8080:8080"
     depends_on:
       - dbpostgresql
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "4200:4200"
+    depends_on:
+      - app
   dbpostgresql:
     image: postgres
     ports:

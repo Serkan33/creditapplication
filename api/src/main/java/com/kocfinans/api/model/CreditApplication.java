@@ -1,5 +1,6 @@
 package com.kocfinans.api.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
@@ -19,8 +20,10 @@ public class CreditApplication {
     @GenericGenerator(name = "uuid", strategy = "uuid2")
     private UUID id;
 
-    @JsonIgnore
+
     @ManyToOne
+    @JoinColumn(name="user_fk")
+    @JsonIgnore
     private User user;
 
     private float creditLimit;

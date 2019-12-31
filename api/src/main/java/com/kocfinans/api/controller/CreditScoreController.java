@@ -29,7 +29,6 @@ public class CreditScoreController {
         float monthlyIncome = u.getMonthlyIncome();
         float limit = CalculateCredit.calculate(score, monthlyIncome);
         CreditApplication creditApplication = new CreditApplication();
-        creditApplication.setUser(user);
         creditApplication.setCreditLimit(limit);
         if (limit > 0) {
             creditApplication.setStatus(true);
@@ -39,7 +38,8 @@ public class CreditScoreController {
             creditApplication.setMessage("Kredi limiti başvurunuz başarısız.");
             creditApplication.setStatus(false);
         }
-        creditApplicationService.save(creditApplication);
+        user.getCreditApplications().add(creditApplication);
+        userService.update(user);
         smsHelper.sendSms(user.getPhone(), creditApplication.getMessage());
         return creditApplication.getMessage();
     }

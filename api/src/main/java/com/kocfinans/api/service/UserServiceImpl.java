@@ -49,8 +49,9 @@ public class UserServiceImpl implements ServiceInterface<User> {
 
     @Transactional
     @Override
-    public User update(User user) {
-
-        return null;
+    public User update(User u) {
+        User user = repository.getOne(u.getId());
+        user.setCreditApplications(u.getCreditApplications());
+        return repository.save(user);
     }
 }

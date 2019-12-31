@@ -1,6 +1,7 @@
 package com.kocfinans.api.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
@@ -45,8 +46,7 @@ public class User {
 
 
     @OneToMany(cascade=CascadeType.ALL)
-    @JoinColumn(name="user_id")
-    private Set<CreditApplication> creditApplication;
+    private Set<CreditApplication> creditApplications;
 
 
     @CreationTimestamp
