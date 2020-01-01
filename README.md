@@ -13,9 +13,9 @@ Projenin backend kısmı spring boot 2.2.2 ile geliştirilmiştir. PostgreSql ve
 
 ## Build
 
-Projeyi çalıştırmak için docker-compose gereklidir. Docker compose yüklendikten sonra `docker-compose.yml` dosyasının bulunduğu dizinde `docker-compose up --build` komutu ile projeyi çalıştırabilirsiniz. Proje `http://localhost:4200` portunda çalışacaktır. 
+Projeyi çalıştırmak için docker-compose gereklidir. Docker compose yüklendikten sonra `docker-compose.yml` dosyasının bulunduğu dizinde `docker-compose up --build` komutu ile projeyi çalıştırabilirsiniz. Angular projesi `http://localhost:4200` portunda çalışacaktır. 
 
-Veritabanına kullanıcı eklemek için `/credit/user/save` endpointine post request yapabilirsiniz. Aşağıda örnek body verilmiştir.
+Veritabanına kullanıcı eklemek için `http://localhost:8080/credit/user/save` endpointine post request yapabilirsiniz. Aşağıda örnek body verilmiştir.
 ```
 {
 	"name":"Deniz",
