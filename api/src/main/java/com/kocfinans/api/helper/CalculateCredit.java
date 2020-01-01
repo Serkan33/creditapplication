@@ -16,8 +16,12 @@ public class CalculateCredit {
         else if (score<1000&&monthlyIncome<5000){
             return minLimit;
         }
-        else{
+        else if (score>999){
             return monthlyIncome*creditLimitMultiplier;
+        }
+        else {
+            // Bu case belirtilmediği için default olarak min limiti gönderiyorum.
+            return minLimit;
         }
     }
 }
